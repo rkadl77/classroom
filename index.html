@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>UI Form: Создание групповой задачи</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="form-container">
+    <div class="glass-card">
+        <h1>
+            <span>👥</span> Создать групповую задачу
+        </h1>
+        <div class="sub">Распределите ответственность и следите за прогрессом команды</div>
+
+        <form id="groupTaskForm">
+            <div class="field-group">
+                <label><i>📌</i> Название задачи</label>
+                <input type="text" id="taskTitle" placeholder="Например: Подготовить макет для клиента" required>
+            </div>
+
+            <div class="field-group">
+                <label><i>📝</i> Описание</label>
+                <textarea id="taskDesc" placeholder="Что именно нужно сделать, материалы, требования..."></textarea>
+            </div>
+
+            <div class="row-2cols">
+                <div class="field-group">
+                    <label><i>📅</i> Дедлайн</label>
+                    <input type="date" id="deadline">
+                </div>
+                <div class="field-group">
+                    <label><i>⚡</i> Приоритет</label>
+                    <select id="priority">
+                        <option value="low">🟢 Низкий</option>
+                        <option value="medium" selected>🟡 Средний</option>
+                        <option value="high">🔴 Высокий</option>
+                        <option value="critical">🔥 Критический</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field-group members-section">
+                <label><i>👥</i> Участники группы</label>
+                <div class="members-list" id="membersListContainer">
+                    <div class="member-tag" data-name="Анна Кузнецова">
+                        <span>👩‍💻 Анна</span>
+                        <button type="button" class="remove-member">✕</button>
+                    </div>
+                    <div class="member-tag" data-name="Дмитрий Волков">
+                        <span>🧑‍💻 Дмитрий</span>
+                        <button type="button" class="remove-member">✕</button>
+                    </div>
+                </div>
+                <div class="add-member-panel">
+                    <input type="text" id="memberNameInput" placeholder="Имя участника (например, Елена С)" autocomplete="off">
+                    <button type="button" id="addMemberBtn">+ Добавить</button>
+                </div>
+                <small style="color:#5b6e8c; display: block; margin-top: 8px;">Нажмите ✕ чтобы удалить участника</small>
+            </div>
+
+            <!-- Вложения (демо) -->
+            <div class="field-group">
+                <label><i>📎</i> Вложения</label>
+                <div class="file-area" id="fileDropArea">
+                    <input type="file" id="fileInput" multiple style="display: none;">
+                    <div class="file-label" id="fileTrigger">
+                        📂 Нажмите или перетащите файлы
+                    </div>
+                    <div class="file-list" id="filePreviewList"></div>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="notifyTeam">
+                <label style="margin:0; font-weight: normal;">🔔 Уведомить всех участников при создании</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="allowSubtasks">
+                <label style="margin:0; font-weight: normal;">✓ Разрешить подзадачи (разбить на этапы)</label>
+            </div>
+
+            <div class="actions">
+                <button type="button" class="btn btn-secondary" id="resetBtn">Очистить</button>
+                <button type="submit" class="btn btn-primary">Создать групповую задачу 🚀</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="toastMessage" class="toast-msg">✨ Групповая задача создана!</div>
+
+<script src="script.js"></script>
+</body>
+</html>
