@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>F4: Настройка выбора лидера группы</title>
+    <link rel="stylesheet" href="f4.css">
+</head>
+<body>
+<div class="form-container">
+    <div class="glass-card">
+        <div class="nav-modules">
+            <a href="f1.html" class="module-link">← F1. Создать задачу</a>
+            <a href="f2.html" class="module-link">F2. Распределение →</a>
+            <a href="f3.html" class="module-link">F3. Статистика →</a>
+            <span class="current-module">F4. Выбор лидера</span>
+        </div>
+
+        <h1>
+            <span>👑</span> Настройка выбора лидера
+        </h1>
+        <div class="sub">Определите, кто будет руководить групповой задачей</div>
+
+        <div id="currentTaskInfo" class="task-info">
+            <span id="taskNamePlaceholder">Задача не выбрана</span>
+        </div>
+
+        <form id="leaderForm">
+            <div class="field-group">
+                <label><i>🎯</i> Способ выбора лидера</label>
+                <div class="radio-group">
+                    <label class="radio-card">
+                        <input type="radio" name="leaderType" value="auto" checked>
+                        <span class="radio-title">🤖 Автоматически</span>
+                        <span class="radio-desc">Система выберет сама</span>
+                    </label>
+                    <label class="radio-card">
+                        <input type="radio" name="leaderType" value="manual">
+                        <span class="radio-title">✋ Ручной выбор</span>
+                        <span class="radio-desc">Я выберу из списка</span>
+                    </label>
+                    <label class="radio-card">
+                        <input type="radio" name="leaderType" value="vote">
+                        <span class="radio-title">🗳️ Голосование</span>
+                        <span class="radio-desc">Участники выбирают</span>
+                    </label>
+                    <label class="radio-card">
+                        <input type="radio" name="leaderType" value="rotation">
+                        <span class="radio-title">🔄 Ротация</span>
+                        <span class="radio-desc">По очереди каждый раз</span>
+                    </label>
+                </div>
+            </div>
+
+            <div id="autoSettings" class="distribution-settings">
+                <div class="field-group">
+                    <label><i>⚖️</i> Критерии автоматического выбора</label>
+                    <div class="criteria-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="criteriaExperience" checked>
+                            <span>Опыт работы</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="criteriaLoad" checked>
+                            <span>Наименьшая загрузка</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="criteriaTasks" checked>
+                            <span>Больше всего выполненных задач</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="criteriaSeniority">
+                            <span>Старшинство (стаж)</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="manualSettings" class="distribution-settings" style="display: none;">
+                <label><i>👑</i> Выберите лидера из участников</label>
+                <div id="membersList" class="members-select-list"></div>
+            </div>
+
+            <div id="voteSettings" class="distribution-settings" style="display: none;">
+                <div class="info-box">
+                    <span>🗳️</span>
+                    <div>Голосование будет запущено после создания задачи. Каждый участник сможет отдать голос за кандидата.</div>
+                </div>
+                <div class="field-group">
+                    <label><i>⏱️</i> Длительность голосования (часов)</label>
+                    <input type="number" id="voteDuration" min="1" max="72" value="24">
+                </div>
+                <div class="field-group">
+                    <label><i>🔐</i> Требования к голосованию</label>
+                    <div class="criteria-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="voteAnonymous" checked>
+                            <span>Анонимное голосование</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="voteMajority" checked>
+                            <span>Простое большинство (50%+1)</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="rotationSettings" class="distribution-settings" style="display: none;">
+                <div class="field-group">
+                    <label><i>🔄</i> Интервал смены лидера</label>
+                    <div class="row-2cols">
+                        <div class="field-group">
+                            <label>Дней</label>
+                            <input type="number" id="rotationDays" min="1" max="30" value="7">
+                        </div>
+                        <div class="field-group">
+                            <label>Задач</label>
+                            <input type="number" id="rotationTasks" min="1" max="20" value="3">
+                        </div>
+                    </div>
+                    <small>Лидер будет меняться через указанный период или количество задач</small>
+                </div>
+                <div class="info-box">
+                    <span>📋</span>
+                    <div>Текущая очередь ротации: <strong id="rotationQueue"></strong></div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="field-group">
+                <label><i>⚡</i> Полномочия лидера</label>
+                <div class="criteria-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="powerAssign" checked>
+                        <span>Назначать ответственных</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="powerDeadline" checked>
+                        <span>Менять дедлайны</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="powerApprove" checked>
+                        <span>Утверждать выполнение</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="powerKick">
+                        <span>Исключать участников</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <label><i>👁️</i> Предпросмотр лидера</label>
+                <div id="previewResult" class="preview-card">
+                    <div class="preview-placeholder">Настройте параметры для предпросмотра</div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button type="button" class="btn btn-secondary" id="resetBtn">Сбросить настройки</button>
+                <button type="button" class="btn btn-secondary" id="previewBtn">Обновить предпросмотр</button>
+                <button type="submit" class="btn btn-primary">Назначить лидера ✅</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="toastMessage" class="toast-msg">Настройки лидера сохранены!</div>
+
+<script src="f4.js"></script>
+</body>
+</html>
