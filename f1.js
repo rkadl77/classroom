@@ -16,6 +16,17 @@ const fileDropArea = document.getElementById('fileDropArea');
 const filePreviewList = document.getElementById('filePreviewList');
 let currentFiles = [];
 
+function saveTaskToStorage(taskData) {
+    localStorage.setItem('currentTask', JSON.stringify(taskData));
+    
+    let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+    tasks.push(taskData);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('totalTasks', tasks.length);
+    
+    console.log('Задача сохранена:', taskData);
+}
+
 function updateFilePreview() {
     if (!filePreviewList) return;
     if (currentFiles.length === 0) {
@@ -149,6 +160,7 @@ function collectFormData() {
         return null;
     }
     const data = {
+        id: Date.now(),
         title: title,
         description: taskDesc.value,
         deadline: deadline.value || 'не указан',
@@ -166,6 +178,7 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = collectFormData();
     if (formData) {
+        saveTaskToStorage(formData);
         console.log('✅ Групповая задача создана:', formData);
         showToast(`🎉 Групповая задача "${formData.title}" создана! Участников: ${formData.members.length}`, 3000);
         form.style.transform = 'scale(1.01)';

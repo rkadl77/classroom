@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>F2: Настройка распределения групповой задачи</title>
+    <link rel="stylesheet" href="f2.css">
+</head>
+<body>
+<div class="form-container">
+    <div class="glass-card">
+        <div class="nav-modules">
+            <a href="f1.html" class="module-link">← F1. Создать задачу</a>
+            <span class="current-module">F2. Настройка распределения</span>
+            <a href="f3.html" class="module-link">F3. Статистика →</a>
+        </div>
+
+        <h1>
+            <span>⚙️</span> Настройка распределения
+        </h1>
+        <div class="sub">Настройте, как задача будет распределена между участниками группы</div>
+
+        <div id="currentTaskInfo" class="task-info">
+            <span id="taskNamePlaceholder">Задача не выбрана</span>
+        </div>
+
+        <form id="distributionForm">
+            <div class="field-group">
+                <label><i>🎯</i> Способ распределения</label>
+                <div class="radio-group">
+                    <label class="radio-card">
+                        <input type="radio" name="distributionType" value="auto" checked>
+                        <span class="radio-title">🤖 Автоматически</span>
+                        <span class="radio-desc">Система сама распределит по нагрузке</span>
+                    </label>
+                    <label class="radio-card">
+                        <input type="radio" name="distributionType" value="manual">
+                        <span class="radio-title">✋ Ручное</span>
+                        <span class="radio-desc">Я назначу каждого вручную</span>
+                    </label>
+                    <label class="radio-card">
+                        <input type="radio" name="distributionType" value="equal">
+                        <span class="radio-title">📊 Равномерно</span>
+                        <span class="radio-desc">Поровну между всеми участниками</span>
+                    </label>
+                </div>
+            </div>
+
+            <div id="autoSettings" class="distribution-settings">
+                <div class="field-group">
+                    <label><i>⚖️</i> Стратегия автоматического распределения</label>
+                    <select id="autoStrategy">
+                        <option value="balanced">Сбалансированная (равномерная нагрузка)</option>
+                        <option value="speed">Быстрая (кто свободнее)</option>
+                        <option value="skill">По компетенциям (кто лучше подходит)</option>
+                        <option value="custom">Кастомный вес участников</option>
+                    </select>
+                </div>
+
+                <div id="customWeightsPanel" style="display: none;">
+                    <label><i>📊</i> Веса участников (0-100%)</label>
+                    <div id="weightsList" class="weights-container"></div>
+                    <small>Укажите важность каждого участника для этой задачи</small>
+                </div>
+            </div>
+
+            <div id="manualSettings" class="distribution-settings" style="display: none;">
+                <label><i>👥</i> Назначить ответственных</label>
+                <div id="manualAssignmentList" class="manual-list"></div>
+            </div>
+
+            <div id="equalSettings" class="distribution-settings" style="display: none;">
+                <div class="info-box">
+                    <span>ℹ️</span>
+                    <div>Задача будет разделена на <strong id="equalPartsCount">0</strong> равных частей 
+                    (по количеству участников). Каждый получит одинаковый объём работы.</div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="row-2cols">
+                <div class="field-group">
+                    <label><i>🔢</i> Максимум задач на участника</label>
+                    <input type="number" id="maxTasksPerMember" min="1" max="20" value="3">
+                </div>
+                <div class="field-group">
+                    <label><i>⏱️</i> Макс. часов в день на человека</label>
+                    <input type="number" id="maxHoursPerDay" min="1" max="12" value="6">
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="requireApproval">
+                <label>✍️ Требовать подтверждение от участников перед назначением</label>
+            </div>
+
+            <div class="field-group">
+                <label><i>🎖️</i> Приоритет при распределении</label>
+                <div class="priority-sliders">
+                    <div class="slider-item">
+                        <span>Скорость выполнения</span>
+                        <input type="range" id="prioritySpeed" min="0" max="100" value="30">
+                        <span class="slider-value" id="speedVal">30%</span>
+                    </div>
+                    <div class="slider-item">
+                        <span>Качество работы</span>
+                        <input type="range" id="priorityQuality" min="0" max="100" value="50">
+                        <span class="slider-value" id="qualityVal">50%</span>
+                    </div>
+                    <div class="slider-item">
+                        <span>Равномерность нагрузки</span>
+                        <input type="range" id="priorityBalance" min="0" max="100" value="20">
+                        <span class="slider-value" id="balanceVal">20%</span>
+                    </div>
+                </div>
+                <small>Сумма приоритетов должна быть 100%</small>
+                <div id="priorityWarning" class="warning-msg"></div>
+            </div>
+
+            <div class="preview-section">
+                <label><i>👁️</i> Предпросмотр распределения</label>
+                <div id="previewResult" class="preview-card">
+                    <div class="preview-placeholder">Настройте параметры для предпросмотра</div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button type="button" class="btn btn-secondary" id="resetBtn">Сбросить настройки</button>
+                <button type="button" class="btn btn-secondary" id="previewBtn">Обновить предпросмотр</button>
+                <button type="submit" class="btn btn-primary">Применить распределение ✅</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="toastMessage" class="toast-msg">Настройки распределения сохранены!</div>
+
+<script src="f2.js"></script>
+</body>
+</html>
