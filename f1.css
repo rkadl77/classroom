@@ -34,6 +34,40 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.nav-modules {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #334155;
+}
+
+.module-link {
+    color: #2dd4bf;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    background: #2dd4bf10;
+    transition: 0.2s;
+}
+
+.module-link:hover {
+    background: #2dd4bf20;
+    color: #5eead4;
+}
+
+.current-module {
+    color: #cbd5e6;
+    font-weight: 500;
+    background: #33415540;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    margin-right: auto;
+}
+
 h1 {
     font-size: 1.9rem;
     font-weight: 600;
@@ -106,7 +140,6 @@ input:focus, textarea:focus, select:focus {
     gap: 1.2rem;
 }
 
-/* Стили для тегов (участники) */
 .members-section {
     background: #0f172a80;
     border-radius: 1.2rem;
@@ -310,5 +343,8 @@ input:focus, textarea:focus, select:focus {
     }
     .btn {
         text-align: center;
+    }
+    .nav-modules {
+        flex-wrap: wrap;
     }
 }

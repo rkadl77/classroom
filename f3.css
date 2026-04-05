@@ -126,3 +126,143 @@ h1 {
     font-size: 0.85rem;
 }
 
+.section {
+    margin-bottom: 2rem;
+}
+
+.section h3 {
+    color: #e2e8f0;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    border-left: 3px solid #2dd4bf;
+}
+
+.tasks-list, .distributions-list {
+    background: #0f172a80;
+    border-radius: 1rem;
+    border: 1px solid #334155;
+    overflow: hidden;
+}
+
+.task-item, .distribution-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #334155;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.task-item:last-child, .distribution-item:last-child {
+    border-bottom: none;
+}
+
+.task-title {
+    font-weight: 600;
+    color: #2dd4bf;
+}
+
+.task-meta {
+    color: #94a3b8;
+    font-size: 0.8rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.distribution-type {
+    background: #2dd4bf20;
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    color: #2dd4bf;
+    font-size: 0.75rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: #64748b;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #334155;
+}
+
+.btn {
+    padding: 0.75rem 1.6rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    transition: 0.2s;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid #475569;
+    color: #cbd5e6;
+}
+
+.btn-secondary:hover {
+    background: #334155;
+}
+
+.btn-primary {
+    background: #2dd4bf;
+    color: #0f172a;
+    box-shadow: 0 4px 12px rgba(45, 212, 191, 0.3);
+}
+
+.btn-primary:hover {
+    background: #14b8a6;
+    transform: scale(0.97);
+}
+
+.toast-msg {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2dd4bfdd;
+    backdrop-filter: blur(12px);
+    color: #0f172a;
+    font-weight: 500;
+    padding: 10px 24px;
+    border-radius: 60px;
+    font-size: 0.85rem;
+    opacity: 0;
+    transition: 0.2s;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+@media (max-width: 640px) {
+    .glass-card {
+        padding: 1.5rem;
+    }
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .actions {
+        flex-direction: column-reverse;
+    }
+    .btn {
+        text-align: center;
+    }
+    .nav-modules {
+        flex-wrap: wrap;
+    }
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

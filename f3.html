@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>F3: Статистика групповых задач</title>
+    <link rel="stylesheet" href="f3.css">
+</head>
+<body>
+<div class="form-container">
+    <div class="glass-card">
+        <div class="nav-modules">
+            <a href="f1.html" class="module-link">← F1. Создать задачу</a>
+            <a href="f2.html" class="module-link">F2. Настройка распределения →</a>
+            <span class="current-module">F3. Статистика</span>
+        </div>
+
+        <h1>
+            <span>📊</span> Статистика
+        </h1>
+        <div class="sub">Аналитика по групповым задачам и распределению</div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📋</div>
+                <div class="stat-value" id="totalTasks">0</div>
+                <div class="stat-label">Всего создано задач</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-value" id="totalMembers">0</div>
+                <div class="stat-label">Участников в текущей задаче</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⚙️</div>
+                <div class="stat-value" id="totalDistributions">0</div>
+                <div class="stat-label">Настроек распределения</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>📝 Последние созданные задачи</h3>
+            <div id="recentTasksList" class="tasks-list">
+                <div class="empty-state">Нет созданных задач</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>⚙️ Последние настройки распределения</h3>
+            <div id="recentDistributionsList" class="distributions-list">
+                <div class="empty-state">Нет сохранённых распределений</div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="btn btn-secondary" id="clearDataBtn">🗑️ Очистить статистику</button>
+            <button type="button" class="btn btn-primary" id="refreshBtn">🔄 Обновить</button>
+        </div>
+    </div>
+</div>
+
+<div id="toastMessage" class="toast-msg">Статистика обновлена!</div>
+
+<script src="f3.js"></script>
+</body>
+</html>
