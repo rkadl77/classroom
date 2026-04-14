@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>F5: Командное решение</title>
+    <link rel="stylesheet" href="f5.css">
+</head>
+<body>
+<div class="form-container">
+    <div class="glass-card">
+        <div class="nav-modules">
+            <a href="f1.html" class="module-link">← F1. Создать задачу</a>
+            <a href="f2.html" class="module-link">← F2. Распределение</a>
+            <a href="f3.html" class="module-link">← F3. Статистика</a>
+            <a href="f4.html" class="module-link">← F4. Выбор лидера</a>
+            <span class="current-module">F5. Командное решение</span>
+        </div>
+
+        <h1>
+            <span>🏆</span> Командное решение
+        </h1>
+        <div class="sub">Итоговая сводка по групповой задаче</div>
+
+        <div id="noTaskWarning" class="warning-box" style="display: none;">
+            ⚠️ Нет активной задачи. Сначала создайте задачу в F1.
+        </div>
+
+        <div id="solutionContent" style="display: none;">
+            <div class="status-badge" id="taskStatus">
+                <span class="status-icon">🟢</span>
+                <span class="status-text">Активна</span>
+            </div>
+
+            <div class="solution-section">
+                <h3>📋 Информация о задаче</h3>
+                <div class="info-grid" id="taskInfo"></div>
+            </div>
+
+            <div class="solution-section">
+                <h3>👥 Распределение задач</h3>
+                <div id="distributionList" class="distribution-list"></div>
+            </div>
+
+            <div class="solution-section">
+                <h3>👑 Лидер команды</h3>
+                <div id="leaderInfo" class="leader-card"></div>
+            </div>
+
+            <div class="solution-section">
+                <h3>📊 Прогресс выполнения</h3>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+                </div>
+                <div class="progress-stats" id="progressStats"></div>
+            </div>
+
+            <div class="solution-section">
+                <h3>📝 Комментарий команды</h3>
+                <textarea id="teamComment" rows="3" placeholder="Оставьте общий комментарий к задаче..."></textarea>
+                <button type="button" class="btn-save-comment" id="saveCommentBtn">💾 Сохранить комментарий</button>
+            </div>
+
+            <div class="action-buttons">
+                <button type="button" class="btn btn-secondary" id="exportBtn">📄 Экспорт в JSON</button>
+                <button type="button" class="btn btn-primary" id="completeBtn">✅ Завершить задачу</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="toastMessage" class="toast-msg">Данные обновлены!</div>
+
+<script src="f5.js"></script>
+</body>
+</html>
