@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>F6: Выставление оценки</title>
+    <link rel="stylesheet" href="f6.css">
+</head>
+<body>
+<div class="form-container">
+    <div class="glass-card">
+        <div class="nav-modules">
+            <a href="f1.html" class="module-link">← F1. Создать задачу</a>
+            <a href="f2.html" class="module-link">← F2. Распределение </a>
+            <a href="f3.html" class="module-link">← F3. Статистика </a>
+            <a href="f4.html" class="module-link">← F4. Выбор лидера </a>
+            <a href="f5.html" class="module-link">← F5. Командное решение </a>
+            <span class="current-module">F6. Оценка</span>
+        </div>
+
+        <h1>
+            <span>⭐</span> Выставление оценки
+        </h1>
+        <div class="sub">Оцените выполненную групповую задачу и вклад участников</div>
+
+        <div id="noTaskWarning" class="warning-box" style="display: none;">
+            ⚠️ Нет завершённых задач. Сначала создайте и завершите задачу в F1-F5.
+        </div>
+
+        <div id="ratingContent" style="display: none;">
+            <div class="current-task-card">
+                <div class="task-title-mini" id="currentTaskTitle"></div>
+                <div class="task-status" id="taskStatus"></div>
+            </div>
+
+            <div class="rating-section">
+                <h3>📊 Общая оценка задачи</h3>
+                <div class="stars-container" id="taskStars">
+                    <span class="star" data-value="1">☆</span>
+                    <span class="star" data-value="2">☆</span>
+                    <span class="star" data-value="3">☆</span>
+                    <span class="star" data-value="4">☆</span>
+                    <span class="star" data-value="5">☆</span>
+                </div>
+                <div class="rating-value" id="taskRatingValue">0 / 5</div>
+            </div>
+
+            <div class="rating-section">
+                <h3>👥 Оценка участников</h3>
+                <div id="membersRatingList" class="members-rating-list"></div>
+            </div>
+
+            <div class="rating-section">
+                <h3>👑 Оценка лидера</h3>
+                <div id="leaderRatingBlock" class="leader-rating-block"></div>
+            </div>
+
+            <div class="rating-section">
+                <h3>📝 Комментарий к оценке</h3>
+                <textarea id="ratingComment" rows="3" placeholder="Напишите, почему поставлена такая оценка..."></textarea>
+            </div>
+
+            <div class="rating-section">
+                <h3>📈 Итоговый рейтинг команды</h3>
+                <div class="total-rating-card">
+                    <div class="total-score" id="totalScore">0</div>
+                    <div class="total-label">общий балл</div>
+                    <div class="grade-letter" id="gradeLetter">F</div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button type="button" class="btn btn-secondary" id="resetRatingBtn">🔄 Сбросить оценку</button>
+                <button type="button" class="btn btn-primary" id="saveRatingBtn">💾 Сохранить оценку</button>
+            </div>
+        </div>
+
+        <div class="rating-history-section">
+            <h3>📜 История оценок</h3>
+            <div id="ratingHistoryList" class="rating-history-list">
+                <div class="empty-state">Нет сохранённых оценок</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="toastMessage" class="toast-msg">Оценка сохранена!</div>
+
+<script src="f6.js"></script>
+</body>
+</html>
